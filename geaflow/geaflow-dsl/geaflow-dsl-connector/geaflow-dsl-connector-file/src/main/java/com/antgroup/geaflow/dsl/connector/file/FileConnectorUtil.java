@@ -14,6 +14,8 @@
 
 package com.antgroup.geaflow.dsl.connector.file;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.antgroup.geaflow.common.config.Configuration;
 import com.antgroup.geaflow.common.exception.GeaflowRuntimeException;
 import com.antgroup.geaflow.common.utils.GsonUtil;
@@ -64,5 +66,21 @@ public class FileConnectorUtil {
             }
         }
         return hadoopConf;
+    }
+
+    public static AWSCredentials getS3Credentials(Configuration conf) {
+        String accessKey = conf.getString(FileConstants.S3_ACCESS_KEY);
+        String secretKey = conf.getString(FileConstants.S3_SECRET_KEY);
+        AWSCredentials credentials = new BasicAWSCredentials(accessKey, secretKey);
+        return credentials;
+    }
+
+    public static String getS3ServiceEndpoint(Configuration conf) {
+        return conf.getString(FileConstants.S3_SERVICE_ENDPOINT);
+    }
+
+    public static String getFileUri(String path) {
+        //s3://
+        return path.substring(5);
     }
 }
