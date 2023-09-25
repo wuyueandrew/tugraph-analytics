@@ -17,6 +17,7 @@ package com.antgroup.geaflow.dsl.connector.file;
 public class FileConstants {
 
     public static final String PREFIX_JAVA_RESOURCE = "resource://";
+    public static final String PREFIX_S3_RESOURCE = "s3://";
 
     public static final String S3_ACCESS_KEY = "geaflow.store.s3.access.key";
 
